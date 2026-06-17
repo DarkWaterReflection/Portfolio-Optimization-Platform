@@ -1,0 +1,27 @@
+# Default platform settings. Override via env var PFOPT_CONFIG pointing to a
+# custom YAML, or by passing a Settings instance explicitly.
+
+data:
+  source: yfinance            # registered DataSource name
+  cache_dir: data_cache       # Parquet snapshot location (gitignored)
+  offline: false              # if true, only read cache; never hit the network
+  max_ffill_days: 3           # forward-fill gap cap before a ticker is dropped
+  max_missing_pct: 0.05       # drop tickers missing more than this fraction
+
+market:
+  periods_per_year: 252       # trading days; used for annualization
+  risk_free_rate: 0.02        # annual, decimal (2%)
+
+estimation:
+  return_model: mean_historical   # mean_historical
+  risk_model: ledoit_wolf         # sample | ledoit_wolf
+
+optimization:
+  long_only: true
+  w_min: 0.0
+  w_max: 1.0
+  frontier_points: 50
+
+random:
+  seed: 42
+  n_portfolios: 20000

@@ -1,0 +1,32 @@
+# Ticker universes. The small `demo_*` lists are used for fast, deterministic
+# tests and the example script. Full S&P 500 / FTSE 100 membership is resolved
+# at runtime by UniverseProvider (and can be refreshed from index sources), but
+# these curated subsets keep offline runs reproducible.
+
+demo_us:        # large-cap US sample (Yahoo tickers)
+  - AAPL
+  - MSFT
+  - AMZN
+  - GOOGL
+  - JPM
+  - JNJ
+  - XOM
+  - PG
+  - NVDA
+  - KO
+
+demo_uk:        # FTSE 100 sample (Yahoo uses the .L suffix for LSE)
+  - HSBA.L
+  - BP.L
+  - SHEL.L
+  - AZN.L
+  - ULVR.L
+  - GSK.L
+  - RIO.L
+  - BARC.L
+  - VOD.L
+  - LLOY.L
+
+benchmarks:
+  sp500: "^GSPC"
+  ftse100: "^FTSE"

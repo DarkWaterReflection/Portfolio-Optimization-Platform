@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-optimization"
+version = "0.1.0"
+description = "Institutional-grade portfolio optimization platform (MPT, efficient frontier, backtesting)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Quant Platform Team" }]
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "pyyaml>=6.0",
+    "yfinance>=0.2.40",
+    "pyarrow>=14.0",
+]
+
+[project.optional-dependencies]
+viz = ["plotly>=5.18", "matplotlib>=3.8", "seaborn>=0.13"]
+dashboard = ["streamlit>=1.30"]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "mypy>=1.9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "network: tests that require live network access (deselect with -m 'not network')",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+packages = ["portfolio_optimization"]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+warn_unused_ignores = true
